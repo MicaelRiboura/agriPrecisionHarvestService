@@ -29,8 +29,8 @@ O projeto foi desenvolvido em uma arquitetura baseada em microsserviços que pos
 
 ### Acesso aos componentes da Arquitetura
 
-- [Aplicação Front-end]()
-- [Serviço de insumos agrícolas]()
+- [Aplicação Front-end](https://github.com/MicaelRiboura/agriprecisionWebApp)
+- [Serviço de insumos agrícolas](https://github.com/MicaelRiboura/agriPrecisionAgroInputsService)
 - **Serviço de Colheitas em Talhões (Repositório Atual)**
 -  [Serviço de Autenticação do Firebase]()
 -  [Serviço de Clima de Open Weather API]()

@@ -1,0 +1,17 @@
+from modules.shared.config.db_sqlite import Session
+from modules.field.daos.field.field_dao_alchemy import FieldDAO
+
+def create_field(form):
+    try:
+        session = Session()
+        field_dao = FieldDAO()
+
+        field = field_dao.create(session, form)
+        
+        return field, 200
+
+    except Exception as e:
+        # caso um erro fora do previsto
+        print('error: ', e)
+        error_msg = "Não foi possível salvar o novo talhão!"
+        return {"message": error_msg}, 400
