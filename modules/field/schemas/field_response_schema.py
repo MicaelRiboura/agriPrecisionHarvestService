@@ -6,5 +6,6 @@ class FieldResponseSchema(BaseModel):
     """
     id:int = 1
     area:float = 20.0
+    planting: str
     user: str
     # items:Optional[List[ItemResponseSchema]]

@@ -9,11 +9,13 @@ class Field(Base):
 
     id = Column(Integer, primary_key=True)
     area = Column(Float)
+    planting = Column(String(500))
     user = Column(String(500))
     history = relationship('HarvestHistory')
 
-    def __init__(self, area: float, user: str):
+    def __init__(self, area: float, planting: str, user: str):
         self.area = area
+        self.planting = planting
         self.user = user
 
 
