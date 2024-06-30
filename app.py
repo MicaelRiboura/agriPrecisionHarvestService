@@ -5,6 +5,7 @@ from modules.field.use_cases import (
     list_fields_by_user,
     create_field,
     get_field,
+    edit_field,
     delete_field,
 )
 
@@ -15,6 +16,7 @@ from modules.field.schemas import (
     FieldResponseSchema,
     CreateFieldSchema,
     FieldByIdQuerySchema,
+    EditFieldSchema,
     DeleteFieldSchema,
 )
 
@@ -57,6 +59,13 @@ def get_field_route(query: FieldByIdQuerySchema):
         Busca um talhão através de seu identificador e usuário
     """
     return get_field(query)
+
+@app.put('/fields/edit', tags=[field_tag], responses={'200': DeleteFieldSchema, '404': ErrorSchema})
+def edit_field_route(query: EditFieldSchema):
+    """
+        Edita um talhão através de seu identificador e usuário
+    """
+    return edit_field(query)
 
 @app.delete('/fields/delete', tags=[field_tag], responses={'200': FieldResponseSchema, '404': ErrorSchema})
 def delete_field_route(query: FieldByIdQuerySchema):

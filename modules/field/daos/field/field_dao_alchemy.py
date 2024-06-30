@@ -13,7 +13,6 @@ class FieldDAO(AbstractFieldDAO):
     
     def find_by_id_and_user(self, session, id, user):
         field = session.query(Field).filter(Field.user == user).filter(Field.id == id).first()
-        print('field: ', field.serialize())
         return field.serialize()
 
     def create(self, session, form):
@@ -29,8 +28,13 @@ class FieldDAO(AbstractFieldDAO):
         return field.serialize()
     
 
-    def edit(self, session, form, user):
-        raise NotImplementedError
+    def edit(self, session, form):
+        field = session.query(Field).filter(Field.user == form.user).filter(Field.id == form.id).first()
+        field.area = form.area
+        field.planting = form.planting
+        session.commit()
+
+        return field.serialize()
     
     def delete(self, session, id, user):
         count = session.query(Field).filter(Field.user == user).filter(Field.id == id).delete()

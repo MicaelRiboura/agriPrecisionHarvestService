@@ -15,7 +15,7 @@ class AbstractFieldDAO(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def edit(self, session, id):
+    def edit(self, session, form):
         raise NotImplementedError
     
     @abstractmethod
