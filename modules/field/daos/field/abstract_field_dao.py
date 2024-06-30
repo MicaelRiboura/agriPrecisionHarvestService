@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 class AbstractFieldDAO(ABC):
     @abstractmethod
-    def create(self, session, form, user):
+    def create(self, session, form):
         raise NotImplementedError
 
     @abstractmethod

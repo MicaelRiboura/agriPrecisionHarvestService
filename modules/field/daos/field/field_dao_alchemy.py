@@ -14,8 +14,16 @@ class FieldDAO(AbstractFieldDAO):
        raise NotImplementedError
     
 
-    def create(self, session, form, user):
-        raise NotImplementedError
+    def create(self, session, form):
+        field = Field(
+            area=form.area,
+            user=form.user,
+        )
+    
+        session.add(field)
+        session.commit()
+
+        return field.serialize()
     
 
     def edit(self, session, form, user):
