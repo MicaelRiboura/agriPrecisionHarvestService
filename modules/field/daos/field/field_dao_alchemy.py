@@ -8,11 +8,13 @@ class FieldDAO(AbstractFieldDAO):
         if fields:
             for field in fields:
                 fields_serialized.append(field.serialize())
+        
         return fields_serialized
     
-    def find_by_id(self, session, id):
-       raise NotImplementedError
-    
+    def find_by_id_and_user(self, session, id, user):
+        field = session.query(Field).filter(Field.user == user).filter(Field.id == id).first()
+        print('field: ', field.serialize())
+        return field.serialize()
 
     def create(self, session, form):
         field = Field(

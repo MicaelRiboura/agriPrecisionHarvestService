@@ -4,6 +4,7 @@ from flask import redirect
 from modules.field.use_cases import (
     list_fields_by_user,
     create_field,
+    get_field,
 )
 
 from modules.shared.errors.error_schema import ErrorSchema
@@ -11,13 +12,14 @@ from modules.field.schemas import (
     ListFieldsByUserQuerySchema,
     ListFieldsByUserResponseSchema,
     FieldResponseSchema,
-    CreateFieldSchema
+    CreateFieldSchema,
+    FieldByIdQuerySchema,
 )
 
 from modules.shared.config.db_sqlite import *
 from flask_cors import CORS
 
-info = Info(title="AgriPrecisison - Serviço de Colheita API", version="1.0.0")
+info = Info(title="AgriPrecision - Serviço de Colheita API", version="1.0.0")
 app = OpenAPI(__name__, info=info)
 CORS(app)
 
@@ -40,9 +42,16 @@ def list_study_trails_by_user_route(query: ListFieldsByUserQuerySchema):
     """
     return list_fields_by_user(query)
 
-@app.post('/fields/create', tags=[field_tag], responses={'200': FieldResponseSchema, '409': ErrorSchema, '400': ErrorSchema})
+@app.post('/fields/create', tags=[field_tag], responses={'200': FieldResponseSchema, '400': ErrorSchema})
 def create_user_route(form: CreateFieldSchema):
     """
         Cria novo talhão
     """
     return create_field(form)
+
+@app.get('/fields/one', tags=[field_tag], responses={'200': FieldResponseSchema, '404': ErrorSchema})
+def get_field_route(query: FieldByIdQuerySchema):
+    """
+        Busca um talhão pelo seu ID e usuário
+    """
+    return get_field(query)

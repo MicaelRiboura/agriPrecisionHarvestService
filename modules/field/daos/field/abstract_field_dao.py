@@ -11,7 +11,7 @@ class AbstractFieldDAO(ABC):
         raise NotImplementedError
     
     @abstractmethod
-    def find_by_id(self, session, id):
+    def find_by_id_and_user(self, session, id, user):
         raise NotImplementedError
 
     @abstractmethod
