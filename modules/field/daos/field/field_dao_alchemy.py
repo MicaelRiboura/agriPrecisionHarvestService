@@ -17,6 +17,7 @@ class FieldDAO(AbstractFieldDAO):
     def create(self, session, form):
         field = Field(
             area=form.area,
+            planting=form.planting,
             user=form.user,
         )
     
