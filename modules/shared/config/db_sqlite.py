@@ -5,6 +5,9 @@ import os
 
 from .model.base import Base
 
+from modules.field.models import Field
+from modules.harvest_history.models import HarvestHistory
+
 db_path = "database/"
 
 if not os.path.exists(db_path):
