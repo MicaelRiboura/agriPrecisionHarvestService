@@ -1,6 +1,16 @@
 from flask_openapi3 import OpenAPI, Info, Tag
 from flask import redirect
 
+from modules.field.use_cases import (
+    list_fields_by_user
+)
+
+from modules.shared.errors.error_schema import ErrorSchema
+from modules.field.schemas import (
+    ListFieldsByUserQuerySchema,
+    ListFieldsByUserResponseSchema
+)
+
 from modules.shared.config.db_sqlite import *
 from flask_cors import CORS
 
@@ -16,3 +26,13 @@ def home():
     """Redireciona para /openapi, tela que permite a escolha do estilo de documentação.
     """
     return redirect('/openapi')
+
+# ----------------------------- Fields Routes -----------------------------
+study_trail_tag = Tag(name="Talhão", description="Adição, visualização, edição e deleção de talhões na base de dados.")
+
+@app.get('/fields', tags=[study_trail_tag], responses={'200': ListFieldsByUserResponseSchema, '404': ErrorSchema})
+def list_study_trails_by_user_route(query: ListFieldsByUserQuerySchema):
+    """
+        Lista talhões de um usuário
+    """
+    return list_fields_by_user(query)
