@@ -32,5 +32,11 @@ class FieldDAO(AbstractFieldDAO):
     def edit(self, session, form, user):
         raise NotImplementedError
     
-    def delete(self, session, form, user):
-        raise NotImplementedError
+    def delete(self, session, id, user):
+        count = session.query(Field).filter(Field.user == user).filter(Field.id == id).delete()
+        session.commit()
+        
+        if not count:
+            return False
+        
+        return True

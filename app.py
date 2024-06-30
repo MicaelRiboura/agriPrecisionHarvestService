@@ -5,6 +5,7 @@ from modules.field.use_cases import (
     list_fields_by_user,
     create_field,
     get_field,
+    delete_field,
 )
 
 from modules.shared.errors.error_schema import ErrorSchema
@@ -14,6 +15,7 @@ from modules.field.schemas import (
     FieldResponseSchema,
     CreateFieldSchema,
     FieldByIdQuerySchema,
+    DeleteFieldSchema,
 )
 
 from modules.shared.config.db_sqlite import *
@@ -52,6 +54,13 @@ def create_user_route(form: CreateFieldSchema):
 @app.get('/fields/one', tags=[field_tag], responses={'200': FieldResponseSchema, '404': ErrorSchema})
 def get_field_route(query: FieldByIdQuerySchema):
     """
-        Busca um talhão pelo seu ID e usuário
+        Busca um talhão através de seu identificador e usuário
     """
     return get_field(query)
+
+@app.delete('/fields/delete', tags=[field_tag], responses={'200': FieldResponseSchema, '404': ErrorSchema})
+def delete_field_route(query: FieldByIdQuerySchema):
+    """
+        Remove um talhão através de seu identificador e usuário
+    """
+    return delete_field(query)
