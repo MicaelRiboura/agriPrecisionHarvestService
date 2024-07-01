@@ -4,4 +4,3 @@ from .list_fields_by_user_schema import ListFieldsByUserQuerySchema
 from .create_field_schema import CreateFieldSchema
 from .field_by_id_query_schema import FieldByIdQuerySchema
 from .edit_field_schema import EditFieldSchema
-from .delete_response_schema import DeleteFieldSchema
