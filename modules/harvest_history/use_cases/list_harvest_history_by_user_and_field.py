@@ -1,5 +1,5 @@
 from modules.shared.config.db_sqlite import Session
-from modules.harvest_history.daos.harvest_history.harvest_history import HarvestHistoryDAO
+from modules.harvest_history.daos.harvest_history.harvest_history_dao_alchemy import HarvestHistoryDAO
 
 def list_harvest_history_by_user_and_field(query):
     try:

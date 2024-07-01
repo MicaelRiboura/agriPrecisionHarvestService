@@ -1,5 +1,5 @@
 from modules.harvest_history.models import HarvestHistory
-from .abstract_harvest_history import AbstractHarvestHistoryDAO
+from .abstract_harvest_history_dao import AbstractHarvestHistoryDAO
 
 class HarvestHistoryDAO(AbstractHarvestHistoryDAO):
     def find_by_user_and_field(self, session, user, field):
@@ -15,13 +15,15 @@ class HarvestHistoryDAO(AbstractHarvestHistoryDAO):
 
     def create(self, session, form):
         harvest = HarvestHistory(
-            area=form.date,
-            user=form.total_production,
+            date=form.date,
+            total_production=form.total_production,
+            field=form.field,
+            user=form.user,
         )
     
         session.add(harvest)
         session.commit()
-
+    
         return harvest.serialize()
     
     def delete(self, session, id, user):
