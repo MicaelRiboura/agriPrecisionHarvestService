@@ -12,6 +12,7 @@ from modules.field.use_cases import (
 from modules.harvest_history.use_cases import (
     list_harvest_history_by_user_and_field,
     create_harvest,
+    delete_harvest,
 )
 
 from modules.shared.errors.error_schema import ErrorSchema
@@ -22,13 +23,16 @@ from modules.field.schemas import (
     CreateFieldSchema,
     FieldByIdQuerySchema,
     EditFieldSchema,
-    DeleteFieldSchema,
 )
 from modules.harvest_history.schemas import (
     ListHarvestHistoryByUserAndFieldResponseSchema,
     ListHarvestHistoryByUserAndFieldQuerySchema,
     HarvestResponseSchema,
     CreateHarvestSchema,
+    HarvestByIdAndFieldSchemaQuerySchema,
+)
+from modules.shared.schemas import (
+    DeleteResponseSchema,
 )
 
 from modules.shared.config.db_sqlite import *
@@ -78,7 +82,7 @@ def edit_field_route(query: EditFieldSchema):
     """
     return edit_field(query)
 
-@app.delete('/fields/delete', tags=[field_tag], responses={'200': DeleteFieldSchema, '404': ErrorSchema})
+@app.delete('/fields/delete', tags=[field_tag], responses={'200': DeleteResponseSchema, '404': ErrorSchema})
 def delete_field_route(query: FieldByIdQuerySchema):
     """
         Remove um talhão através de seu identificador e usuário
@@ -101,3 +105,10 @@ def create_harvest_history_route(form: CreateHarvestSchema):
         Registra nova colheita em um talhão de um usuário
     """
     return create_harvest(form)
+
+@app.delete('/harvest-history/delete', tags=[harvest_history_tag], responses={'200': DeleteResponseSchema, '404': ErrorSchema})
+def delete_harvest_history_route(query: HarvestByIdAndFieldSchemaQuerySchema):
+    """
+        Remove um registro de colheita através de seu identificador, talhão e usuário
+    """
+    return delete_harvest(query)
