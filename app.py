@@ -10,7 +10,8 @@ from modules.field.use_cases import (
 )
 
 from modules.harvest_history.use_cases import (
-    list_harvest_history_by_user_and_field
+    list_harvest_history_by_user_and_field,
+    create_harvest,
 )
 
 from modules.shared.errors.error_schema import ErrorSchema
@@ -25,7 +26,9 @@ from modules.field.schemas import (
 )
 from modules.harvest_history.schemas import (
     ListHarvestHistoryByUserAndFieldResponseSchema,
-    ListHarvestHistoryByUserAndFieldQuerySchema
+    ListHarvestHistoryByUserAndFieldQuerySchema,
+    HarvestResponseSchema,
+    CreateHarvestSchema,
 )
 
 from modules.shared.config.db_sqlite import *
@@ -68,14 +71,14 @@ def get_field_route(query: FieldByIdQuerySchema):
     """
     return get_field(query)
 
-@app.put('/fields/edit', tags=[field_tag], responses={'200': DeleteFieldSchema, '404': ErrorSchema})
+@app.put('/fields/edit', tags=[field_tag], responses={'200': FieldResponseSchema, '404': ErrorSchema})
 def edit_field_route(query: EditFieldSchema):
     """
         Edita um talhão através de seu identificador e usuário
     """
     return edit_field(query)
 
-@app.delete('/fields/delete', tags=[field_tag], responses={'200': FieldResponseSchema, '404': ErrorSchema})
+@app.delete('/fields/delete', tags=[field_tag], responses={'200': DeleteFieldSchema, '404': ErrorSchema})
 def delete_field_route(query: FieldByIdQuerySchema):
     """
         Remove um talhão através de seu identificador e usuário
@@ -91,3 +94,10 @@ def list_harvest_history_by_user_and_field_route(query: ListHarvestHistoryByUser
         Lista histórico de colheitas de um usuário em um talhão
     """
     return list_harvest_history_by_user_and_field(query)
+
+@app.post('/harvest-history/create', tags=[harvest_history_tag], responses={'200': HarvestResponseSchema, '400': ErrorSchema})
+def create_harvest_history_route(form: CreateHarvestSchema):
+    """
+        Registra nova colheita em um talhão de um usuário
+    """
+    return create_harvest(form)
