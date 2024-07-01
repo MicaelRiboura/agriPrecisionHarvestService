@@ -90,7 +90,7 @@ def delete_field_route(query: FieldByIdQuerySchema):
     return delete_field(query)
 
 # ----------------------------- Harvest History Routes -----------------------------
-harvest_history_tag = Tag(name="Histórico de Colheitas", description="Adição, visualização, edição e deleção do histórico de colheitas na base de dados.")
+harvest_history_tag = Tag(name="Histórico de Colheitas", description="Adição, visualização e deleção do histórico de colheitas na base de dados.")
 
 @app.get('/harvest-history', tags=[harvest_history_tag], responses={'200': ListHarvestHistoryByUserAndFieldResponseSchema, '404': ErrorSchema})
 def list_harvest_history_by_user_and_field_route(query: ListHarvestHistoryByUserAndFieldQuerySchema):
