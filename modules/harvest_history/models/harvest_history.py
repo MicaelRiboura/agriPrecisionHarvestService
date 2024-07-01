@@ -7,14 +7,12 @@ class HarvestHistory(Base):
 
     id = Column(Integer, primary_key=True)
     date = Column(Date)
-    humidity = Column(Float)
     total_production = Column(Integer)
     field = Column(Integer, ForeignKey('field.id'), nullable=False)
     user = Column(String(500))
 
-    def __init__(self, date: str, humidity: float, total_production: float):
+    def __init__(self, date: str, total_production: float):
         self.date = date
-        self.humidity = humidity
         self.total_production = total_production
 
     def serialize(self):
