@@ -14,3 +14,6 @@ class AbstractHarvestHistoryDAO(ABC):
     def delete(self, session, id):
         raise NotImplementedError
     
+    @abstractmethod
+    def show_productivity_map(self, session, user):
+        raise NotImplementedError

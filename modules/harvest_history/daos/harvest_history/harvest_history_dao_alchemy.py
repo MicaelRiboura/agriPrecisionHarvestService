@@ -1,5 +1,7 @@
 from modules.harvest_history.models import HarvestHistory
+from sqlalchemy import func
 from .abstract_harvest_history_dao import AbstractHarvestHistoryDAO
+from modules.field.models import Field
 
 class HarvestHistoryDAO(AbstractHarvestHistoryDAO):
     def find_by_user_and_field(self, session, user, field):
@@ -12,6 +14,20 @@ class HarvestHistoryDAO(AbstractHarvestHistoryDAO):
                 harvest_history_serialized.append(field.serialize())
         
         return harvest_history_serialized
+    
+    def show_productivity_map(self, session, user):
+
+        results = session.query(
+            Field.id,
+            func.avg(HarvestHistory.total_production).label('total_production'),
+        ).join(HarvestHistory).group_by(Field.id).all()
+
+        response = []
+
+        for field_id, average in results:
+            response.append({ 'field': field_id, 'average': average })
+
+        return response
 
     def create(self, session, form):
         harvest = HarvestHistory(

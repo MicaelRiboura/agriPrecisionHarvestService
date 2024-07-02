@@ -13,6 +13,7 @@ from modules.harvest_history.use_cases import (
     list_harvest_history_by_user_and_field,
     create_harvest,
     delete_harvest,
+    map_productivity_fields
 )
 
 from modules.shared.errors.error_schema import ErrorSchema
@@ -30,6 +31,8 @@ from modules.harvest_history.schemas import (
     HarvestResponseSchema,
     CreateHarvestSchema,
     HarvestByIdAndFieldSchemaQuerySchema,
+    ProductivityMapResponseSchema,
+    ProductivityMapQuerySchema,
 )
 from modules.shared.schemas import (
     DeleteResponseSchema,
@@ -112,3 +115,10 @@ def delete_harvest_history_route(query: HarvestByIdAndFieldSchemaQuerySchema):
         Remove um registro de colheita através de seu identificador, talhão e usuário
     """
     return delete_harvest(query)
+
+@app.get('/harvest-history/map-productivity', tags=[harvest_history_tag], responses={'200': ProductivityMapResponseSchema, '404': ErrorSchema})
+def map_productivity_fields_route(query: ProductivityMapQuerySchema):
+    """
+        Retorna mapa de produtividade dos talhões
+    """
+    return map_productivity_fields(query)
