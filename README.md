@@ -54,10 +54,16 @@ docker build -t harvest-api .
 ```
 
 ### 3 - Rodando container Docker
-Ao final, você executa um container Docker com base na imagem criada através do seguinte comando:
+Para executar um container Docker com base na imagem criada através do seguinte comando:
 
 ```
 docker run -p 5001:5000  harvest-api
+```
+
+Ao final, cole esse endereço no seu navegador para visualizar a documentação da API e suas rotas:
+
+```
+localhost:5001
 ```
 
 ## Como Executar a Aplicação sem Docker
