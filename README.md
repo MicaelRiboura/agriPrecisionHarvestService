@@ -37,6 +37,28 @@ O projeto foi desenvolvido em uma arquitetura baseada em microsserviços que pos
 
 ## Como Executar a Aplicação com Docker
 
+### 1 - Clonando o repositório
+Antes de tudo, precisamos clonar o projeto para ser executado em sua máquina. Você pode clonar esse repositório fazendo o download por meio de um arquivo ZIP ou através do seguinte comando:
+
+```
+git clone https://github.com/MicaelRiboura/learn-with-me-api.git
+```
+
+> ⚠️ Após clonar o repositório, é necessário ir ao diretório raiz do projeto, pelo terminal, para poder executar os comandos descritos abaixo.
+
+### 2 - Criando a imagem Docker
+Primeiro, você deve criar uma imagem Docker com o seguinte comando:
+
+```
+docker build -t harvest-api .
+```
+
+### 3 - Rodando container Docker
+Ao final, você executa um container Docker com base na imagem criada através do seguinte comando:
+
+```
+docker run -p 5001:5000  harvest-api
+```
 
 ## Como Executar a Aplicação sem Docker
 
