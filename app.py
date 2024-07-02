@@ -119,6 +119,6 @@ def delete_harvest_history_route(query: HarvestByIdAndFieldSchemaQuerySchema):
 @app.get('/harvest-history/map-productivity', tags=[harvest_history_tag], responses={'200': ProductivityMapResponseSchema, '404': ErrorSchema})
 def map_productivity_fields_route(query: ProductivityMapQuerySchema):
     """
-        Remove um registro de colheita através de seu identificador, talhão e usuário
+        Retorna mapa de produtividade dos talhões
     """
     return map_productivity_fields(query)
