@@ -10,8 +10,8 @@ class HarvestHistoryDAO(AbstractHarvestHistoryDAO):
         
         harvest_history_serialized = []
         if harvest_history:
-            for field in harvest_history:
-                harvest_history_serialized.append(field.serialize())
+            for harvest in harvest_history:
+                harvest_history_serialized.append(harvest.serialize())
         
         return harvest_history_serialized
     
