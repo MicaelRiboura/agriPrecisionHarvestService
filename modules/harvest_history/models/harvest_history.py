@@ -19,7 +19,6 @@ class HarvestHistory(Base):
         self.user = user
 
     def serialize(self):
-        harvest_history_formated = self
-        harvest_history_formated.date = datetime.strftime(self.date, '%Y-%m-%d')
-        harvest_history = Serializer.serialize(harvest_history_formated)
+        harvest_history = Serializer.serialize(self)
+        harvest_history['date'] = datetime.strftime(self.date, '%Y-%m-%d')
         return harvest_history
