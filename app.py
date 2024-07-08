@@ -79,11 +79,11 @@ def get_field_route(query: FieldByIdQuerySchema):
     return get_field(query)
 
 @app.put('/fields/edit', tags=[field_tag], responses={'200': FieldResponseSchema, '404': ErrorSchema})
-def edit_field_route(query: EditFieldSchema):
+def edit_field_route(form: EditFieldSchema):
     """
         Edita um talhão através de seu identificador e usuário
     """
-    return edit_field(query)
+    return edit_field(form)
 
 @app.delete('/fields/delete', tags=[field_tag], responses={'200': DeleteResponseSchema, '404': ErrorSchema})
 def delete_field_route(query: FieldByIdQuerySchema):
