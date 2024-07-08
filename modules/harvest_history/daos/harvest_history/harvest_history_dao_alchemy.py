@@ -16,16 +16,16 @@ class HarvestHistoryDAO(AbstractHarvestHistoryDAO):
         return harvest_history_serialized
     
     def show_productivity_map(self, session, user):
-
         results = session.query(
             Field.id,
-            func.avg(HarvestHistory.total_production).label('total_production'),
-        ).join(HarvestHistory).group_by(Field.id).all()
+            Field.planting,
+            func.avg(HarvestHistory.total_production).label('average_production')
+        ).outerjoin(HarvestHistory, Field.id == HarvestHistory.field).filter(Field.user == user).group_by(Field.id).all()
 
         response = []
 
-        for field_id, average in results:
-            response.append({ 'field': field_id, 'average': average })
+        for field_id, field_planting, average in results:
+            response.append({ 'field': field_id, 'planting': field_planting, 'average': average })
 
         return response
 
