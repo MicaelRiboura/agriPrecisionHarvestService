@@ -7,7 +7,7 @@ class HarvestHistory(Base):
     __tablename__ = 'harvest_history'
 
     id = Column(Integer, primary_key=True)
-    date = Column(Date, unique=True)
+    date = Column(Date)
     total_production = Column(Integer)
     field = Column(Integer, ForeignKey('field.id'), nullable=False)
     user = Column(String(500))
