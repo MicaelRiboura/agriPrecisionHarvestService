@@ -114,19 +114,19 @@ Para instalar as libs listadas no arquivo `requirements.txt`, execute o comando 
 Finalmente, para executar a API, basta executar o seguinte comando:
 
 ```
-(env)$ flask run --host 0.0.0.0 --port 5000
+(env)$ flask run --host 0.0.0.0 --port 5001
 ```
 
 Em modo de desenvolvimento, é recomendado executar utilizando o parâmetro reload, que reiniciará o servidor automaticamente após uma mudança no código fonte, conforme abaixo:
 
 ```
-(env)$ flask run --host 0.0.0.0 --port 5000 --reload
+(env)$ flask run --host 0.0.0.0 --port 5001 --reload
 ```
 
 Ao final, cole esse endereço no seu navegador para visualizar a documentação da API e suas rotas:
 
 ```
-localhost:5000
+localhost:5001
 ```
 
 > ⚠️ O símbolo *(env)$* é apenas para ilustrar um terminal com o virtualenv ativado, não pertencendo aos comandos apresentados acima.
