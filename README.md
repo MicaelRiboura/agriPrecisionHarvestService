@@ -6,23 +6,22 @@
 
 ![python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+![sqlalchemy](https://img.shields.io/badge/SQLAlchemy-D71F00.svg?style=for-the-badge&logo=SQLAlchemy&logoColor=white)
 
 </div>
 
 # Agriprecision - Serviço de Colheita API
 
-Recursos precisos para um plantio sustentável e eficiente.
+Seu plantio sustentável e eficiente.
 
-**Agriprecision** tem como objetivo contribuir na agricultura de precisão, definindo os requisitos das safras e do solo para uma produtividade ótima, por um lado, e para preservar os recursos, assegurar a sustentabilidade ambiental e a proteção, por outro. Assim, contribuindo para [os Objetivos de Desenvolvimento Sustentável do documento da ONU](https://brasil.un.org/pt-br/sdgs).
+**Agriprecision** tem como objetivo contribuir para a agricultura de precisão, definindo os requisitos das safras e do solo para se obter uma produtividade eficiente, com a preservação de recursos e assegurar a sustentabilidade ambiental. Assim, contribuindo para [o documento da ONU dos Objetivos de Desenvolvimento Sustentável](https://brasil.un.org/pt-br/sdgs).
 
-Portanto, trata-se de um Web App que permite aos agricultores controlarem a quantidade de insumos agrícolas aplicáveis dentro de áreas agrícolas definidas na fase de plantio.
-
-Projeto desenvolvido para o MVP na Sprint Arquitetura de Software da Pós Graduação de Engenharia de Software da PUC-Rio.
+Projeto desenvolvido para o MVP na Sprint: **Arquitetura de Software** da Pós Graduação de Engenharia de Software da PUC-Rio.
 
 
 ## Arquitetura de Software Desenvolvida
 
-O projeto foi desenvolvido em uma arquitetura baseada em microsserviços que possui como serviços de APIs externas a autenticação e de dados do clima, assim como foram desenvolvidos os serviços de gerenciamento de estoque de insumos agrícolas disponíveis e o gerenciamento do histórico de produção com base nas colheitas em talhões.
+O projeto foi desenvolvido em uma arquitetura baseada em microsserviços, na qual uma aplicação front-end monolítica gerencia todo o estado e o comportamento, enquanto utiliza microsserviços de apoio para recuperar dados ou executar as operações necessárias. Os microsserviços utilizados são: Serviço de autenticação, Serviço de dados do clima e Serviço de colheitas em talhões, que podem ser observados melhor no diagrama a seguir.
 
 ![diagrama da arquitetura](./doc-images/arq-diagram.jpg)
 
@@ -30,10 +29,9 @@ O projeto foi desenvolvido em uma arquitetura baseada em microsserviços que pos
 ### Acesso aos componentes da Arquitetura
 
 - [Aplicação Front-end](https://github.com/MicaelRiboura/agriprecisionWebApp)
-- [Serviço de insumos agrícolas](https://github.com/MicaelRiboura/agriPrecisionAgroInputsService)
 - **Serviço de Colheitas em Talhões (Repositório Atual)**
--  [Serviço de Autenticação do Firebase]()
--  [Serviço de Clima de Open Weather API]()
+-  [Serviço de Autenticação de Usuário](https://github.com/MicaelRiboura/agriPrecisionUserService)
+-  [Serviço de Clima de Open Weather API](https://github.com/MicaelRiboura/agriprecisionWebApp/blob/develop/weather-api.docs.md)
 
 ## Como Executar a Aplicação com Docker
 
@@ -50,14 +48,14 @@ git clone https://github.com/MicaelRiboura/learn-with-me-api.git
 Primeiro, você deve criar uma imagem Docker com o seguinte comando:
 
 ```
-docker build -t harvest-api .
+docker build -t agri-harvest-service .
 ```
 
 ### 3 - Rodando container Docker
 Para executar um container Docker com base na imagem criada através do seguinte comando:
 
 ```
-docker run -p 5001:5000  harvest-api
+docker run -p 5001:5000  agri-harvest-service
 ```
 
 Ao final, cole esse endereço no seu navegador para visualizar a documentação da API e suas rotas:
