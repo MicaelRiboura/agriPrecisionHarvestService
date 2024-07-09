@@ -10,7 +10,7 @@
 
 </div>
 
-# Agriprecision - Serviço de Colheita API
+# Agriprecision - Serviço de Colheitas em Talhões
 
 Seu plantio sustentável e eficiente.
 
