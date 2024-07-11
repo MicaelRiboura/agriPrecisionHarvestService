@@ -31,7 +31,7 @@ O projeto foi desenvolvido em uma arquitetura baseada em microsserviços, na qua
 - [Aplicação Front-end](https://github.com/MicaelRiboura/agriprecisionWebApp)
 - **Serviço de Colheitas em Talhões (Repositório Atual)**
 -  [Serviço de Autenticação de Usuário](https://github.com/MicaelRiboura/agriPrecisionUserService)
--  [Serviço de Clima de Open Weather API](https://github.com/MicaelRiboura/agriprecisionWebApp/blob/develop/weather-api.docs.md)
+-  [Serviço de Clima de Weather API](https://github.com/MicaelRiboura/agriprecisionWebApp/blob/develop/weather-api.docs.md)
 
 ## Como Executar a Aplicação com Docker
 
